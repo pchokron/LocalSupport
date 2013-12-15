@@ -3,6 +3,10 @@ LocalSupport::Application.routes.draw do
 
   match 'organizations/search' => 'organizations#search'
 
+  get 'admin/mailchimp' => 'admin#mailchimp'
+  get 'admin/mailchimp/export_api/:list' => 'admin#mailchimp_export_api'
+  get 'admin/mailchimp/:list' => 'admin#mailchimp_export'
+
   get 'contributors' => 'contributors#show'
   #match 'pages/disclaimer' => 'pages#disclaimer'
   #match 'pages/aboutus' => 'pages#aboutus'

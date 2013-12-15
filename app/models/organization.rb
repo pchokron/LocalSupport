@@ -35,6 +35,10 @@ class Organization < ActiveRecord::Base
     latitude.blank? and longitude.blank?
   end
 
+  def has_users?
+    !users.blank?
+  end
+
   #This method is overridden to save organization if address was failed to geocode
   def run_validations!
     run_callbacks :validate
@@ -169,6 +173,15 @@ class Organization < ActiveRecord::Base
     @@column_mappings.each_value do |column_name|
       unless row.header?(column_name)
         raise CSV::MalformedCSVError, "No expected column with name #{column_name} in CSV file"
+      end
+    end
+  end
+
+  def self.export_to_mailchimp_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
       end
     end
   end

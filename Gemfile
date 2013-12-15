@@ -89,4 +89,5 @@ gem "font-awesome-rails"
 # validating organization website URLs
 gem "url_validator"
 
-
+# Mailchimp integration for mailing lists
+gem 'mailchimp-api', require: 'mailchimp'
