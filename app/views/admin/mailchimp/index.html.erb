@@ -1,0 +1,30 @@
+<h2><%= link_to 'MailChimp', 'https://us3.admin.mailchimp.com/lists', :target => '_blank' %> Integration</h2>
+<h3>Manage your lists</h3>
+Export the following list:
+<ul>
+  <br/>
+  <li>Organization List<br/>
+    <%= link_to 'To CSV file', '/admin/mailchimp/OrganizationList.csv', {:class => 'btn btn-primary'} %>
+    <% if @api_enabled %><%= link_to 'To MailChimp via API', '/admin/mailchimp/export_api/OrganizationList', {:class => 'btn btn-primary'} %><% end %>
+  </li>
+  <br/>
+  <li>Users List<br/>
+    <%= link_to 'To CSV file', '/admin/mailchimp/UserList.csv', {:class => 'btn btn-primary'} %>
+    <% if @api_enabled %><%= link_to 'To MailChimp via API', '/admin/mailchimp/export_api/UserList', {:class => 'btn btn-primary'} %><% end %>
+  </li>
+</ul>
+
+
+<br/>
+<h3>API Status</h3>
+<div id="api_status">
+
+<% if @api_enabled %>
+    The API is connected.
+<% else %>
+    The API is not connected or not configured properly.
+    <br />
+    <% if @api_error %>Message: <%= @api_error %><% end %>
+<% end %>
+
+</div>
